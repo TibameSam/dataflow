@@ -39,6 +39,7 @@
     docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.5 .
     docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.5.arm64 .
     docker build -f gce.with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.6.gce .
+    docker build -f gce.with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.7.gce .
 
 #### push docker image
 
@@ -53,6 +54,7 @@
     docker push linsamtw/tibame_dataflow:0.0.5
     docker push linsamtw/tibame_dataflow:0.0.5.arm64
     docker push linsamtw/tibame_dataflow:0.0.6.gce
+    docker push linsamtw/tibame_dataflow:0.0.7.gce
 
 #### pull docker image
 
