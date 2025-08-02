@@ -1,5 +1,5 @@
 # 使用 Ubuntu 20.04 作為基礎映像檔
-FROM tibame_dataflow:0.0.7
+FROM linsamtw/tibame_dataflow:0.0.7
 
 # 將當前目錄（與 Dockerfile 同層）所有內容複製到容器的 /dataflow 資料夾
 COPY ./src /dataflow/src
