@@ -1,5 +1,5 @@
 # 使用 Ubuntu 20.04 作為基礎映像檔
-FROM ubuntu:20.04
+FROM linsamtw/tibame_dataflow:0.0.5
 
 # 更新套件列表，並安裝 Python 3.8 以及 pip（Python 套件管理工具）
 RUN apt-get update && \
