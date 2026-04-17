@@ -3,10 +3,9 @@ FROM linsamtw/tibame_dataflow:0.0.7
 
 # 將當前目錄（與 Dockerfile 同層）所有內容複製到容器的 /dataflow 資料夾
 COPY ./src /dataflow/src
-COPY ./setup.py /dataflow
 COPY ./genenv.py /dataflow
-COPY ./Pipfile /dataflow
-COPY ./Pipfile.lock /dataflow
+COPY ./pyproject.toml /dataflow
+COPY ./uv.lock /dataflow
 COPY ./README.md /dataflow
 COPY ./local.ini /dataflow
 COPY ./airflow-gce.cfg /dataflow/airflow.cfg

@@ -4,7 +4,7 @@ services:
   # 初始化 Airflow 資料庫
   initdb:
     image: linsamtw/tibame_dataflow:${DOCKER_IMAGE_VERSION}  # 使用指定版本的自定義映像
-    command: pipenv run airflow db init  # 初始化 Airflow 的 metadata DB
+    command: uv run --env-file=.env airflow db init  # 初始化 Airflow 的 metadata DB
     restart: on-failure  # 若失敗則自動重啟
     deploy:
       mode: replicated  # 使用 swarm replicated 模式
@@ -17,7 +17,7 @@ services:
   # 建立 Airflow 使用者
   create-user:
     image: linsamtw/tibame_dataflow:${DOCKER_IMAGE_VERSION}  # 同一映像
-    command: pipenv run airflow users create --username admin --firstname lin --lastname sam --role Admin -p admin --email finmind.tw@gmail.com  # 建立管理者帳號
+    command: uv run --env-file=.env airflow users create --username admin --firstname lin --lastname sam --role Admin -p admin --email finmind.tw@gmail.com  # 建立管理者帳號
     depends_on:
       - initdb  # 等待 initdb 完成後再執行
     restart: on-failure  # 失敗自動重啟
@@ -52,7 +52,7 @@ services:
   webserver:
     image: linsamtw/tibame_dataflow:${DOCKER_IMAGE_VERSION}
     hostname: "airflow-webserver"  # 指定主機名稱
-    command: pipenv run airflow webserver -p 5000  # 啟動 webserver，使用 5000 port
+    command: uv run --env-file=.env airflow webserver -p 5000  # 啟動 webserver，使用 5000 port
     depends_on:
       - initdb  # 等待資料庫初始化
     restart: always  # 永遠重新啟動（即使正常退出也重啟）
@@ -91,7 +91,7 @@ services:
   scheduler:
     image: linsamtw/tibame_dataflow:${DOCKER_IMAGE_VERSION}
     hostname: "airflow-scheduler"
-    command: pipenv run airflow scheduler  # 啟動 scheduler
+    command: uv run --env-file=.env airflow scheduler  # 啟動 scheduler
     depends_on:
       - initdb
     restart: always
@@ -123,7 +123,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: pipenv run airflow celery worker
+    command: uv run --env-file=.env airflow celery worker
     # swarm 設定
     deploy:
       mode: replicated
@@ -146,7 +146,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: pipenv run airflow celery worker -q twse
+    command: uv run --env-file=.env airflow celery worker -q twse
     # swarm 設定
     deploy:
       mode: replicated
@@ -169,7 +169,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: pipenv run airflow celery worker -q tpex
+    command: uv run --env-file=.env airflow celery worker -q tpex
     # swarm 設定
     deploy:
       mode: replicated

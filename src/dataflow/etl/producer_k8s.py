@@ -9,7 +9,7 @@ def create_producer_task() -> KubernetesPodOperator:
         namespace="default",
         image="linsamtw/tibame_crawler:0.0.8.composer",
         image_pull_policy='Always',  # 👈 強制每次都拉
-        cmds=["pipenv", "run", "python", "crawler/producer_crawler_finmind_duplicate.py"],
+        cmds=["uv", "run", "--env-file=.env", "python", "crawler/producer_crawler_finmind_duplicate.py"],
         is_delete_operator_pod=True,
         get_logs=True,
     )

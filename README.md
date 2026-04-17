@@ -2,17 +2,21 @@
 
 # 環境設定
 
-#### 安裝 pipenv
+#### 安裝 uv
 
-    pip install pipenv==2022.4.8
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-#### set pipenv
+#### 安裝 Python 3.11
 
-    pipenv --python ~/.pyenv/versions/3.8.10/bin/python
+    uv python install 3.11
+
+#### set uv 虛擬環境
+
+    uv venv --python 3.11
 
 #### 安裝 repo 套件
 
-    pipenv sync
+    uv sync
 
 #### 建立環境變數
 
