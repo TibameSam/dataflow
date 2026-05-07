@@ -26,7 +26,7 @@
 
 #### 排版
 
-    black -l 80 src/
+    black -l 80 dataflow/
 
 # Docker
 
@@ -89,5 +89,5 @@
 	environments storage \
 	dags import --environment airflow  \
 	--location us-central1 \
-	--source "src/dataflow" 
+	--source "dataflow" 
 
