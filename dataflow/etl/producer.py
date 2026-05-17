@@ -17,5 +17,5 @@ def create_producer_task() -> DockerOperator:
         auto_remove=True,
         # ✅ 指定容器要使用的 Docker network 名稱
         # 注意：這要是 Docker Engine 中已存在的 network 名稱
-        network_mode="my_swarm_network",
+        network_mode="my_attachable_network",
     )

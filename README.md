@@ -166,6 +166,9 @@ dataflow/
     ENV=DOCKER python genenv.py
     ENV=PRODUCTION python genenv.py
 
+## create-network:
+	docker network create --scope=swarm --driver=overlay --attachable my_attachable_network
+
 #### 排版
 
     black -l 80 dataflow/
