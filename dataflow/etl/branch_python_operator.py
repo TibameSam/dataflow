@@ -1,16 +1,16 @@
 # 匯入 Airflow 所需的 Operators
-from airflow.operators.dummy_operator import (
-    DummyOperator,
-)  # 用於建立空的佔位任務
-from airflow.operators.python_operator import (
+from airflow.operators.empty import (
+    EmptyOperator,
+)  # 用於建立空的佔位任務（舊稱 DummyOperator）
+from airflow.operators.python import (
     BranchPythonOperator,  # 用於條件分支邏輯
     PythonOperator,  # 用於執行 Python 函式
 )
 
 
-# 建立一個 DummyOperator 任務，用於「跳過」的情境
-def create_skip_task() -> DummyOperator:
-    return DummyOperator(task_id="skip")
+# 建立一個 EmptyOperator 任務，用於「跳過」的情境
+def create_skip_task() -> EmptyOperator:
+    return EmptyOperator(task_id="skip")
 
 
 # 建立一個 PythonOperator 任務，用來執行爬蟲邏輯（這裡簡化為 print）

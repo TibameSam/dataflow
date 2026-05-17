@@ -1,5 +1,5 @@
 # 匯入 Airflow 中的 PythonOperator，可用來執行自定義的 Python 函式
-from airflow.operators.python_operator import (
+from airflow.operators.python import (
     PythonOperator,
 )
 

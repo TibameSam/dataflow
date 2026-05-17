@@ -30,14 +30,18 @@ services:
       - my_swarm_network
 
 
+  # Redis：Celery 的 message broker 與 result backend
+  # scheduler 把 task 丟進 Redis queue
+  # worker 從 queue 取出 task 執行，結果再寫回 Redis
+  # 沒有 Redis，CeleryExecutor 無法分派任務
   redis:
     image: 'bitnami/redis:5.0'
     ports:
-        - 6379:6379
+        - 6379:6379  # 對外開放 6379 port（給其他容器或本機連線）
     volumes:
-        - 'redis_data:/bitnami/redis/data'
+        - 'redis_data:/bitnami/redis/data'  # 持久化 Redis 資料
     environment:
-        - ALLOW_EMPTY_PASSWORD=yes
+        - ALLOW_EMPTY_PASSWORD=yes  # 允許無密碼（僅內網環境用）
     restart: always
     # swarm 設定
     deploy:
