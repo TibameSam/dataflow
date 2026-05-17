@@ -123,7 +123,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: uv run --env-file=.env airflow celery worker
+    command: uv run --env-file=.env airflow celery worker -H "celery@%h"
     # swarm 設定
     deploy:
       mode: replicated
@@ -146,7 +146,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: uv run --env-file=.env airflow celery worker -q twse
+    command: uv run --env-file=.env airflow celery worker -q twse -H "celery@%h"
     # swarm 設定
     deploy:
       mode: replicated
@@ -169,7 +169,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: uv run --env-file=.env airflow celery worker -q tpex
+    command: uv run --env-file=.env airflow celery worker -q tpex -H "celery@%h"
     # swarm 設定
     deploy:
       mode: replicated

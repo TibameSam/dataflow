@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -280,6 +280,24 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/fc/34/074ab4489c916e2b8a682e703e5d78c1038584f11c8a40440f3442dc193e/apache_airflow_providers_celery-3.6.0.tar.gz", hash = "sha256:7a5f4311799b8fb547dc84f90da7e4f7e974b73ede038714f1e5b89c32d8ac83", size = 24195, upload-time = "2024-02-15T15:45:54.116Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c2/2a/2ab5364787f5eb5ccf4d7139effeb1f372e7dd2a2f55b02389da26b0f50e/apache_airflow_providers_celery-3.6.0-py3-none-any.whl", hash = "sha256:5a83112525711da36cced492e8e92b6e707bbc4a4b4d68f756f33eb5bdb81998", size = 32754, upload-time = "2024-02-15T15:44:42.64Z" },
+]
+
+[[package]]
+name = "apache-airflow-providers-cncf-kubernetes"
+version = "7.13.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiofiles" },
+    { name = "apache-airflow" },
+    { name = "asgiref" },
+    { name = "cryptography" },
+    { name = "google-re2" },
+    { name = "kubernetes" },
+    { name = "kubernetes-asyncio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/26/b2/a95f46112f0fa0e67b6ae6730fb0bd5dff26ab20ab0baf709f78ce9f6813/apache_airflow_providers_cncf_kubernetes-7.13.0.tar.gz", hash = "sha256:ebcc3ae60b58d48cefc866b197431deb21ced5fc8beb2f69afe2fdf0ec458fa4", size = 79176, upload-time = "2023-12-31T10:26:40.465Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/52/d0/c6a79547bb195010860ad59a8531f3718d7f6890f977273c099501685e9c/apache_airflow_providers_cncf_kubernetes-7.13.0-py3-none-any.whl", hash = "sha256:cf7eb0dd8187ee4e53a00b87cf1b3dbf91a3fb649b25f2e552d1a001fd56ed81", size = 117122, upload-time = "2023-12-31T10:26:21.511Z" },
 ]
 
 [[package]]
@@ -917,6 +935,7 @@ source = { editable = "." }
 dependencies = [
     { name = "apache-airflow" },
     { name = "apache-airflow-providers-celery" },
+    { name = "apache-airflow-providers-cncf-kubernetes" },
     { name = "apache-airflow-providers-docker" },
     { name = "apache-airflow-providers-google" },
     { name = "celery", extra = ["redis"] },
@@ -933,9 +952,10 @@ dependencies = [
 requires-dist = [
     { name = "apache-airflow", specifier = "==2.7.3" },
     { name = "apache-airflow-providers-celery", specifier = "==3.6.0" },
+    { name = "apache-airflow-providers-cncf-kubernetes", specifier = "==7.13.0" },
     { name = "apache-airflow-providers-docker", specifier = "==3.0.0" },
     { name = "apache-airflow-providers-google", specifier = "==10.17.0" },
-    { name = "celery", extras = ["redis"] },
+    { name = "celery", extras = ["redis"], specifier = ">=5.6.0" },
     { name = "flask-session", specifier = "==0.5.0" },
     { name = "flower", specifier = "==1.0.0" },
     { name = "google-cloud-storage", specifier = "==2.16.0" },
@@ -2698,6 +2718,45 @@ redis = [
 ]
 
 [[package]]
+name = "kubernetes"
+version = "23.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "google-auth" },
+    { name = "python-dateutil" },
+    { name = "pyyaml" },
+    { name = "requests" },
+    { name = "requests-oauthlib" },
+    { name = "setuptools" },
+    { name = "six" },
+    { name = "urllib3" },
+    { name = "websocket-client" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d5/a5/e50dbde38d54aa38a191204d6e446c7b41c1ab67354a2f652e971a4b5932/kubernetes-23.6.0.tar.gz", hash = "sha256:cadb1cd7c44eae5b39b50316313343c0f2aff94529f067ec2ba44d38411158e3", size = 753201, upload-time = "2022-05-06T22:31:26.53Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/41/0e/307280c6d531f68d36411f0affdd25d510ad4e640f4f19da1b8b23331578/kubernetes-23.6.0-py2.py3-none-any.whl", hash = "sha256:dd58e286a53071bc8e32041f07f3c2236b3ed8ca5b9f57794a5077358f7ccb06", size = 1524068, upload-time = "2022-05-06T22:31:24.203Z" },
+]
+
+[[package]]
+name = "kubernetes-asyncio"
+version = "24.2.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "certifi" },
+    { name = "python-dateutil" },
+    { name = "pyyaml" },
+    { name = "setuptools" },
+    { name = "six" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/de/15/3aa37df52ecd60f93c0266c50de74bb93c9a519e004a90c02b764bbf123a/kubernetes_asyncio-24.2.3.tar.gz", hash = "sha256:01b0f22dbb9e83a333dc0d3c7b00bf76483cf18071a70dd022fdeaae04b81e93", size = 919347, upload-time = "2023-05-01T23:27:25.249Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/93/c23d0553bdd93c44b7c8e2fdd3f8cd35d2cd846d4284863da04b9488fa3b/kubernetes_asyncio-24.2.3-py3-none-any.whl", hash = "sha256:48f3bd583eeb16fbeb0767b0e190039013c1a4a7f4af5178ca3a6a904a7b6aba", size = 1820688, upload-time = "2023-05-01T23:27:22.789Z" },
+]
+
+[[package]]
 name = "lazy-object-proxy"
 version = "1.12.0"
 source = { registry = "https://pypi.org/simple" }
@@ -4031,14 +4090,15 @@ wheels = [
 
 [[package]]
 name = "redis"
-version = "6.4.0"
+version = "5.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "async-timeout", marker = "python_full_version < '3.11.3'" },
+    { name = "pyjwt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0d/d6/e8b92798a5bd67d659d51a18170e91c16ac3b59738d91894651ee255ed49/redis-6.4.0.tar.gz", hash = "sha256:b01bc7282b8444e28ec36b261df5375183bb47a07eb9c603f284e89cbc5ef010", size = 4647399, upload-time = "2025-08-07T08:10:11.441Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6a/cf/128b1b6d7086200c9f387bd4be9b2572a30b90745ef078bd8b235042dc9f/redis-5.3.1.tar.gz", hash = "sha256:ca49577a531ea64039b5a36db3d6cd1a0c7a60c34124d46924a45b956e8cf14c", size = 4626200, upload-time = "2025-07-25T08:06:27.778Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e8/02/89e2ed7e85db6c93dfa9e8f691c5087df4e3551ab39081a4d7c6d1f90e05/redis-6.4.0-py3-none-any.whl", hash = "sha256:f0544fa9604264e9464cdf4814e7d4830f74b165d52f2a330a760a88dd248b7f", size = 279847, upload-time = "2025-08-07T08:10:09.84Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/26/5c5fa0e83c3621db835cfc1f1d789b37e7fa99ed54423b5f519beb931aa7/redis-5.3.1-py3-none-any.whl", hash = "sha256:dc1909bd24669cc31b5f67a039700b16ec30571096c5f1f0d9d2324bff31af97", size = 272833, upload-time = "2025-07-25T08:06:26.317Z" },
 ]
 
 [[package]]
@@ -4578,6 +4638,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/35/a2/8e3becb46433538a38726c948d3399905a4c7cabd0df578ede5dc51f0ec2/wcwidth-0.6.0.tar.gz", hash = "sha256:cdc4e4262d6ef9a1a57e018384cbeb1208d8abbc64176027e2c2455c81313159", size = 159684, upload-time = "2026-02-06T19:19:40.919Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/68/5a/199c59e0a824a3db2b89c5d2dade7ab5f9624dbf6448dc291b46d5ec94d3/wcwidth-0.6.0-py3-none-any.whl", hash = "sha256:1a3a1e510b553315f8e146c54764f4fb6264ffad731b3d78088cdb1478ffbdad", size = 94189, upload-time = "2026-02-06T19:19:39.646Z" },
+]
+
+[[package]]
+name = "websocket-client"
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/2c/41/aa4bf9664e4cda14c3b39865b12251e8e7d239f4cd0e3cc1b6c2ccde25c1/websocket_client-1.9.0.tar.gz", hash = "sha256:9e813624b6eb619999a97dc7958469217c3176312b3a16a4bd1bc7e08a46ec98", size = 70576, upload-time = "2025-10-07T21:16:36.495Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/34/db/b10e48aa8fff7407e67470363eac595018441cf32d5e1001567a7aeba5d2/websocket_client-1.9.0-py3-none-any.whl", hash = "sha256:af248a825037ef591efbf6ed20cc5faa03d3b47b9e5a2230a529eeee1c1fc3ef", size = 82616, upload-time = "2025-10-07T21:16:34.951Z" },
 ]
 
 [[package]]
