@@ -17,7 +17,12 @@ services:
   # 建立 Airflow 使用者
   create-user:
     image: linsamtw/tibame_dataflow:${DOCKER_IMAGE_VERSION}  # 同一映像
-    command: uv run --env-file=.env airflow users create --username admin --firstname lin --lastname sam --role Admin -p admin --email finmind.tw@gmail.com  # 建立管理者帳號
+    # 建立管理者帳號
+    command: >-
+      uv run --env-file=.env airflow users create
+      --username admin --firstname lin --lastname sam
+      --role Admin -p admin
+      --email finmind.tw@gmail.com
     depends_on:
       - initdb  # 等待 initdb 完成後再執行
     restart: on-failure  # 失敗自動重啟
