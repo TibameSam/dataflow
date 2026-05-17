@@ -1,5 +1,5 @@
 # 使用 Ubuntu 22.04 作為基礎映像檔
-FROM linsamtw/tibame_dataflow:0.0.5
+FROM ubuntu:22.04
 
 # 更新套件列表，並安裝 curl 與 ca-certificates（下載 uv 所需）
 RUN apt-get update && \
@@ -16,7 +16,7 @@ RUN uv python install 3.11
 RUN mkdir /dataflow
 
 # 將當前目錄（與 Dockerfile 同層）所有內容複製到容器的 /dataflow 資料夾
-COPY ./src /dataflow/src
+COPY ./dataflow /dataflow/dataflow
 COPY ./genenv.py /dataflow
 COPY ./pyproject.toml /dataflow
 COPY ./uv.lock /dataflow
