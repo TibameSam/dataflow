@@ -127,7 +127,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: uv run --env-file=.env airflow celery worker -H "celery@%h"
+    # --without-mingle / --without-gossip：跳過 worker 啟動時跟其他 worker 同步 clock 與 revoked list
+    # 避免 Redis 上殘留的殭屍 reply queue 卡住 mingle，造成 worker 遲遲不進入 ready 狀態
+    command: uv run --env-file=.env airflow celery worker --without-mingle --without-gossip -H "celery@%h"
     # swarm 設定
     deploy:
       mode: replicated
@@ -150,7 +152,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: uv run --env-file=.env airflow celery worker -q twse -H "celery@%h"
+    # --without-mingle / --without-gossip：跳過 worker 啟動時跟其他 worker 同步 clock 與 revoked list
+    # 避免 Redis 上殘留的殭屍 reply queue 卡住 mingle，造成 worker 遲遲不進入 ready 狀態
+    command: uv run --env-file=.env airflow celery worker --without-mingle --without-gossip -q twse -H "celery@%h"
     # swarm 設定
     deploy:
       mode: replicated
@@ -173,7 +177,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - scheduler
-    command: uv run --env-file=.env airflow celery worker -q tpex -H "celery@%h"
+    # --without-mingle / --without-gossip：跳過 worker 啟動時跟其他 worker 同步 clock 與 revoked list
+    # 避免 Redis 上殘留的殭屍 reply queue 卡住 mingle，造成 worker 遲遲不進入 ready 狀態
+    command: uv run --env-file=.env airflow celery worker --without-mingle --without-gossip -q tpex -H "celery@%h"
     # swarm 設定
     deploy:
       mode: replicated
