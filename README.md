@@ -177,19 +177,19 @@ dataflow/
 
 #### build docker image
 
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.1 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.1.arm64 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.2 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.2.arm64 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.3 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.3.arm64 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.4 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.4.arm64 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.5 .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.5.arm64 .
-    docker build -f gce.with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.6.gce .
-    docker build -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.7 .
-    docker build -f gce.with.env.cache.Dockerfile -t linsamtw/tibame_dataflow:0.0.8 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.1 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.1.arm64 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.2 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.2.arm64 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.3 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.3.arm64 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.4 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.4.arm64 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.5 .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.5.arm64 .
+    docker build --no-cache -f gce.with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.6.gce .
+    docker build --no-cache -f with.env.Dockerfile -t linsamtw/tibame_dataflow:0.0.7 .
+    docker build --no-cache -f gce.with.env.cache.Dockerfile -t linsamtw/tibame_dataflow:0.0.8 .
 
 #### push docker image
 
