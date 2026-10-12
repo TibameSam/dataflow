@@ -39,7 +39,9 @@ services:
   # scheduler 把 task 丟進 Redis queue
   # worker 從 queue 取出 task 執行，結果再寫回 Redis
   # 沒有 Redis，CeleryExecutor 無法分派任務
-  redis:
+  # 不要命名為 redis：my_swarm_network 上 redash 也有名為 redis 的服務，
+  # DNS 會同時解析到兩台，scheduler 跟 worker 可能連到不同 Redis，導致任務卡住
+  airflow-redis:
     image: 'bitnami/redis:latest'
     ports:
         - 6379:6379  # 對外開放 6379 port（給其他容器或本機連線）
@@ -81,8 +83,8 @@ services:
     image: mher/flower:2.0.1
     restart: always
     depends_on:
-      - redis
-    command: ["celery", "--broker=redis://redis:6379/0", "flower", "--port=5555"]
+      - airflow-redis
+    command: ["celery", "--broker=redis://airflow-redis:6379/0", "flower", "--port=5555"]
     ports:
         - "5556:5555"
     # swarm 設定
